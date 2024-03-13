@@ -20,18 +20,19 @@ pipeline {
                      body: 'Please approve the deployment by clicking this link: https://18.133.237.165:8080//approve'
             }
         }
-       
-        stage('Deploy') {
+       stage('Deploy') {
             steps {
-                 def nginxServerUsername = 'ubuntu'
+                script {
+                    def nginxServerUsername = 'ubuntu'
                     def nginxServerHost = '13.40.68.224'
                     def nginxServerPath = '/var/www/html'
-                    def localFilePath = ''
+                    def localFilePath = 'index.html'
 
-                sh 'scp /path/to/index.html user@nginx-server:/path/to/nginx/html'
-                echo 'Index.html copied to Nginx server'
-            }
-        }
+                    // Use SCP to copy files to the Nginx server
+                    sh "scp -r ${localFilePath} ${nginxServerUsername}@${nginxServerHost}:${nginxServerPath}"
+                }
+                }
+    }
     }
 }
 
