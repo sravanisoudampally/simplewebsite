@@ -14,10 +14,7 @@ pipeline {
         }
         stage('Approval') {
             steps {
-        input 'Proceed with deployment?'
-                mail to: 'sravanisoudampally@gmail.com',
-                     subject: 'Approval needed for deployment',
-                     body: 'Please approve the deployment by clicking this link: https://18.133.237.165:8080//approve'
+        
             }
         }
        stage('Deploy') {
