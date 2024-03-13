@@ -12,11 +12,7 @@ pipeline {
                 sh 'echo "Testing..."'
             }
         }
-        stage('Approval') {
-            steps {
         
-            }
-        }
        stage('Deploy') {
             steps {
                 script {
