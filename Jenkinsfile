@@ -14,20 +14,20 @@ pipeline {
         }
         stage('Approval') {
             steps {
-        
+        input 'Proceed with deployment?'
                 mail to: 'sravanisoudampally@gmail.com',
                      subject: 'Approval needed for deployment',
-                     body: 'Please approve the deployment by clicking this link: https://example.com/approve'
+                     body: 'Please approve the deployment by clicking this link: https://http://18.133.237.165:8080//approve'
             }
         }
-        stage('Deployment Approval') {
-            steps {
-                               input 'Proceed with deployment?'
-            }
-        }
+       
         stage('Deploy') {
             steps {
-                // Copy index.html from Jenkins server to Nginx server
+                 def nginxServerUsername = 'ubuntu'
+                    def nginxServerHost = '13.40.68.224'
+                    def nginxServerPath = '/var/www/html'
+                    def localFilePath = ''
+
                 sh 'scp /path/to/index.html user@nginx-server:/path/to/nginx/html'
                 echo 'Index.html copied to Nginx server'
             }
