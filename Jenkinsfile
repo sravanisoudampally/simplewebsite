@@ -14,7 +14,7 @@ pipeline {
         }
          stage('Email Approval') {
             steps {
-               input ( message " proceed")
+               input ( message: 'proceed')
             }
             
          }
