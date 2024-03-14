@@ -26,7 +26,7 @@ pipeline {
             )
         }
         // Wait for approval
-        input(message: 'Proceed with deployment?', ok: 'Deploy')
+        def approval = input(message: 'Proceed with deployment?', ok: 'Deploy')
     }
 }
         
