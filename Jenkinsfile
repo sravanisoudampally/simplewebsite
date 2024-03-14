@@ -13,23 +13,22 @@ pipeline {
             }
         }
          stage('Email Approval') {
-            steps {
-                script {
-                    def approvalLink = 'http://18.133.237.165:8080/approve'
-                    def approvalMessage = "Please click the following link to approve: ${approvalLink}"
-                    
-                    // Send email using Email Extension Plugin
-                    emailext(
-                        subject: 'Approval Required',
-                        body: approvalMessage,
-                        to: 'sravanisoudampally@gmail.com'
-                    )
-                }
-                // Wait for approval
-                input(message: 'Proceed with deployment?', ok: 'Deploy')
-            }
+    steps {
+        script {
+            def jenkinsUrl = 'http://18.133.237.165:8080/job/simplewebsite/16/input/Proceed%20or%20Abort/proceedEmpty?token=approval-d695c394-9f46-4b3c-838a-c28ffe3aa323'
+            def approvalMessage = "Please click the following link to approve: ${jenkinsUrl}"
+            
+            // Send email using Email Extension Plugin
+            emailext(
+                subject: 'Approval Required',
+                body: approvalMessage,
+                to: 'sravanisoudampally@gmail.com'
+            )
         }
-
+        // Wait for approval
+        input(message: 'Proceed with deployment?', ok: 'Deploy')
+    }
+}
         
        stage('Deploy') {
             steps {
