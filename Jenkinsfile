@@ -17,6 +17,7 @@ pipeline {
         script {
             def jenkinsUrl = 'http://18.133.237.165:8080/job/simplewebsite/16/input/Proceed%20or%20Abort/proceedEmpty?token=approval-d695c394-9f46-4b3c-838a-c28ffe3aa323'
             def approvalMessage = "Please click the following link to approve: ${jenkinsUrl}"
+            def approval = input message: 'Proceed with deployment?', ok: 'Deploy'
             
             // Send email using Email Extension Plugin
             emailext(
@@ -25,8 +26,8 @@ pipeline {
                 to: 'sravanisoudampally@gmail.com'
             )
         }
-        // Wait for approval
-         def approval = input message: 'Proceed with deployment?', ok: 'Deploy'
+        
+        
 }
          }
         
