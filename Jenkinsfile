@@ -28,6 +28,7 @@ pipeline {
         // Wait for approval
          def approval = input message: 'Proceed with deployment?', ok: 'Deploy'
 }
+         }
         
        stage('Deploy') {
             steps {
