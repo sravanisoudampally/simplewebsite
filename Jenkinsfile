@@ -15,7 +15,7 @@ pipeline {
         stage('Email Approval') {
     steps {
         script {
-            def jenkinsUrl = 'http://18.133.237.165:8080/job/simplewebsite/33/input/Proceed%20or%20Abort/proceedEmpty?token=approval-57046f5d-f880-4b0e-8d59-65ba84bcfa3e'
+            def jenkinsUrl = 'http://18.133.237.165:8080/job/simplewebsite/33/input/Proceed%20or%20Abort/proceedEmpty?token=approval-110be7a7211368a39f5e43ba4e6272c920'
             def approvalMessage = "Please click the following link to approve: ${jenkinsUrl}"
             
             // Send email using Email Extension Plugin
