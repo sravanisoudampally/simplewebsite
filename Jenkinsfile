@@ -12,16 +12,18 @@ pipeline {
                 sh 'echo "Testing..."'
             }
         }
-        stage('Email Approval') {
+         stage('Email Approval') {
             steps {
-                // Send an email with an approval link
                 script {
                     def approvalLink = 'http://18.133.237.165:8080/approve'
                     def approvalMessage = "Please click the following link to approve: ${approvalLink}"
-                    // Use a service to send email, e.g., SMTP or a third-party service
-                    // This is just a placeholder for demonstration
-                    // Replace it with actual code to send email
-                    sh "echo '${approvalMessage}' | mail -s 'Approval Required' sravanisoudampally@gmail.com"
+                    
+                    // Send email using Email Extension Plugin
+                    emailext(
+                        subject: 'Approval Required',
+                        body: approvalMessage,
+                        to: 'sravanisoudampally@gmail.com'
+                    )
                 }
                 // Wait for approval
                 input(message: 'Proceed with deployment?', ok: 'Deploy')
