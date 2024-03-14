@@ -14,17 +14,9 @@ pipeline {
         }
         stage('Email Approval') {
     steps {
-        script {
-            def jenkinsUrl = '$BUILD_URL'
-            def approvalMessage = "Please click the following link to approve: ${jenkinsUrl}"
-            
-            // Send email using Email Extension Plugin
-            emailext(
-                subject: 'Approval Required',
-                body: approvalMessage,
-                to: 'sravanisoudampally@gmail.com'
-            )
-        }
+        mail to: 'sravanisoudampally@gmail.com',
+             subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) is waiting for input",
+             body: "Please go to ${BUILD_URL} and verify the build"
         input (message: 'Proceed with deployment?', ok: 'Deploy')
     }
 }
